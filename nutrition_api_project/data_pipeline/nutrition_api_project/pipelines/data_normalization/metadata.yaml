@@ -1,0 +1,55 @@
+blocks:
+- all_upstream_blocks_executed: true
+  color: null
+  configuration: {}
+  downstream_blocks:
+  - normalize_collection_df
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: retrieve_mongo_collection
+  status: updated
+  type: data_loader
+  upstream_blocks: []
+  uuid: retrieve_mongo_collection
+- all_upstream_blocks_executed: false
+  color: null
+  configuration: {}
+  downstream_blocks:
+  - export_results_postgresql
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: normalize_collection_df
+  status: updated
+  type: transformer
+  upstream_blocks:
+  - retrieve_mongo_collection
+  uuid: normalize_collection_df
+- all_upstream_blocks_executed: false
+  color: null
+  configuration: {}
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: export_results_postgresql
+  status: updated
+  type: data_exporter
+  upstream_blocks:
+  - normalize_collection_df
+  uuid: export_results_postgresql
+callbacks: []
+data_integration: null
+description: Data pipeline that moves from MongoDB collection to PostgreSQL table
+  for nutrition data.
+executor_count: 1
+extensions: {}
+name: data_normalization
+type: python
+updated_at: '2023-08-29 03:30:17'
+uuid: data_normalization
+widgets: []
